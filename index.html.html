@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ECEBE2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1F201D" media="(prefers-color-scheme: dark)">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Птичка — цветы в Гомеле</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ECEBE2;--acc:#4F5B45;--onacc:#F3F1E8;--surf:#F6F3EC;--ink:#2B2A27;--mute:#7C786F;--line:#D3CDC0;--red:#C58A7C;--pur:#A79BB8;--grn:#9DAE8A;box-sizing:border-box}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1F201D;--acc:#A7B596;--onacc:#1F201D;--surf:#282A26;--ink:#ECE8DF;--mute:#9A978D;--line:#3A3C37}}
+:root[data-theme="dark"]{--bg:#1F201D;--acc:#A7B596;--onacc:#1F201D;--surf:#282A26;--ink:#ECE8DF;--mute:#9A978D;--line:#3A3C37}
+html{scroll-padding-top:calc(60px + env(safe-area-inset-top,0px));-webkit-text-size-adjust:100%;text-size-adjust:100%;-webkit-tap-highlight-color:transparent;scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:300 15px/1.5 Jost,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overscroll-behavior-y:none}
+#app{max-width:440px;margin:0 auto;min-height:100vh;min-height:100dvh;background:var(--bg);position:relative;padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+@media(min-width:480px){body{background:var(--surf)}#app{border-left:1px solid var(--line);border-right:1px solid var(--line)}}
+.serif{font-family:'Cormorant Garamond',Georgia,serif}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0}
+button:focus-visible,input:focus-visible,label:focus-within{outline:1px solid var(--ink);outline-offset:3px}
+header{padding:6px 22px 18px;display:flex;justify-content:space-between;align-items:flex-end}
+.logo{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:44px;line-height:.9;font-weight:400}
+.sub{color:var(--mute);font-size:13px;margin-top:6px}
+.me{text-align:right;font-size:12px;color:var(--mute);line-height:1.4}
+.me b{display:block;font:italic 400 17px 'Cormorant Garamond',Georgia,serif;color:var(--ink)}
+.note{margin:0 22px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:13px;color:var(--mute)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:26px 14px;padding:24px 22px}
+.tile{aspect-ratio:4/5;border-radius:2px;overflow:hidden;position:relative;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+.tile svg{width:100%;height:100%;display:block}
+.add{position:absolute;right:8px;bottom:8px;width:34px;height:34px;border-radius:50%;background:var(--surf);color:#2B2A27;font-size:20px;line-height:1;display:grid;place-items:center;border:1px solid rgba(0,0,0,.08);transition:transform .2s}
+.add::after{content:"";position:absolute;inset:-6px;border-radius:50%}
+.add:active{transform:scale(.9)}
+.nm{font:500 22px/1.1 'Cormorant Garamond',Georgia,serif;margin-top:9px}
+.cm{font-size:12px;color:var(--mute);margin-top:2px;min-height:18px}
+.pr{font-size:14px;margin-top:4px}
+.bar{position:fixed;left:50%;transform:translate(-50%,160%);opacity:0;pointer-events:none;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .3s;bottom:calc(14px + env(safe-area-inset-bottom,0px));width:min(396px,calc(100% - 32px));background:var(--acc);color:var(--onacc);border-radius:40px;padding:15px 22px;display:flex;justify-content:space-between;font-size:15px}
+.btn{display:block;width:100%;background:var(--acc);color:var(--onacc);transition:transform .2s,opacity .2s;border-radius:40px;padding:15px;text-align:center;font-size:15px}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--ink)}
+.btn:active{transform:scale(.98)}
+.pg{padding:22px}
+h2{font:italic 400 34px/1 'Cormorant Garamond',Georgia,serif;margin:6px 0 18px}
+h3{font:500 21px/1 'Cormorant Garamond',Georgia,serif;margin:0 0 12px}
+.sec{padding:20px 0;border-top:1px solid var(--line)}
+.back{color:var(--mute);font-size:13px;padding:4px 0}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.ci{padding:14px 0;border-bottom:1px solid var(--line)}
+.qty{display:flex;align-items:center;gap:12px}
+.qty button{width:32px;height:32px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center}
+.seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ink);border-radius:40px;overflow:hidden}
+.seg button{padding:11px}
+.seg .on{background:var(--acc);color:var(--onacc)}
+.opt{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.opt:last-child{border-bottom:0}
+.opt input{margin-top:5px;accent-color:var(--ink)}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:6px}
+.small{font-size:12px;color:var(--mute)}
+input[type=text],input[type=tel],input[type=date]{width:100%;background:none;border:0;border-bottom:1px solid var(--line);padding:11px 0;font:inherit;color:var(--ink);border-radius:0;font-size:16px;line-height:1.35}
+input[type=date]{-webkit-appearance:none;appearance:none;display:block;min-height:44px}
+.chips{display:flex;gap:8px;margin-top:14px}
+.chip{flex:1;border:1px solid var(--line);border-radius:40px;padding:9px 0;text-align:center;font-size:13px}
+.chip.on{background:var(--acc);color:var(--onacc);border-color:var(--acc)}
+.chip[disabled]{opacity:.35;text-decoration:line-through;cursor:default}
+.sum div{display:flex;justify-content:space-between;padding:4px 0}
+.tot{font:500 26px 'Cormorant Garamond',Georgia,serif;border-top:1px solid var(--ink);margin-top:8px;padding-top:12px!important}
+.err{color:#B5604F;font-size:13px;margin:10px 0 0}
+#top{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:calc(10px + env(safe-area-inset-top,0px)) 14px 10px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.ic{position:relative;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;transition:background .25s}
+.badge{position:absolute;top:2px;right:0;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--acc);color:var(--onacc);font-size:11px;display:grid;place-items:center}
+.bp{animation:bump .45s}
+@keyframes bump{40%{transform:scale(1.5)}}
+.bar.show{transform:translate(-50%,0);opacity:1;pointer-events:auto}
+#ov{position:fixed;inset:0;background:rgba(30,32,26,.38);opacity:0;pointer-events:none;transition:opacity .4s;z-index:30}
+#ov.open{opacity:1;pointer-events:auto}
+#menu{position:fixed;top:0;bottom:0;left:0;width:min(320px,84vw);background:var(--surf);z-index:40;transform:translateX(-102%);visibility:hidden;transition:transform .5s cubic-bezier(.2,.8,.2,1),visibility 0s .5s;padding:calc(30px + env(safe-area-inset-top,0px)) 26px calc(28px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;overscroll-behavior:contain}
+#menu.open{transform:none;visibility:visible;transition-delay:0s}
+.mi{display:block;width:100%;text-align:left;font:italic 400 30px/1 'Cormorant Garamond',Georgia,serif;padding:16px 0;border-bottom:1px solid var(--line);transition:padding-left .3s,color .3s}
+@keyframes up{from{opacity:0;transform:translateY(14px)}}
+.enter>.pg{animation:up .5s cubic-bezier(.2,.8,.2,1) both}
+.enter .grid>div{animation:up .65s cubic-bezier(.2,.8,.2,1) both}
+.enter .grid>div:nth-child(even){animation-delay:.07s}
+.enter .grid>div:nth-child(n+3){animation-delay:.14s}
+.enter .grid>div:nth-child(n+5){animation-delay:.21s}
+.tile svg{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.chip,.seg button,.opt{transition:background .25s,color .25s,border-color .25s}
+.prog{height:3px;background:var(--line);margin-top:12px;border-radius:2px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--acc);transform-origin:left;animation:grow 1.1s .3s both cubic-bezier(.2,.8,.2,1)}
+@keyframes grow{from{transform:scaleX(0)}}
+
+/* ===== iPhone / touch ===== */
+button,.chip,.opt,.seg button,.mi,.add,.ic,.qty button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+
+/* hover только для мыши с точным курсором */
+@media (hover:hover) and (pointer:fine){
+  .ic:hover{background:var(--surf)}
+  .tile:hover svg{transform:scale(1.045)}
+  .add:hover{transform:scale(1.1)}
+  .mi:hover{padding-left:8px;color:var(--acc)}
+}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div id="app"><div id="top"></div><div id="view"></div></div><div id="ov" onclick="menu(0)"></div><nav id="menu" aria-label="Меню"></nav><button id="bar" class="bar" onclick="go('cart')"></button>
+<script>
+var P=[
+{id:1,n:'Утренний луг',c:'ромашка, эустома, зелень',p:65,bg:'#DCE0CB',b:['#F5F2E9','#E7D7A2'],k:'r'},
+{id:2,n:'Пыльная роза',c:'кустовые розы, эвкалипт',p:95,bg:'#E6D3CB',b:['#D9A9A0','#EBCFC6'],k:'r'},
+{id:3,n:'Тишина',c:'гортензия, лизиантус, пампас',p:115,bg:'#D3D9E0',b:['#B7C3D6','#E9E7EE'],k:'r'},
+{id:4,n:'Сухоцвет №3',c:'пшеница, статица, лагурус',p:55,bg:'#E4D9C4',b:['#CDB48C','#B99A74'],k:'d'},
+{id:5,n:'Дымка',c:'пионы, ранункулюсы',p:150,bg:'#E9DAD8',b:['#EBC7C6','#F6E9E4'],k:'r'},
+{id:6,n:'Моно-тюльпан',c:'15 тюльпанов',p:48,bg:'#D8DECF',b:['#E7BFB7','#F2E3DD'],k:'t'}];
+var ZONES={red:{n:'Центр',d:'Советская, проспект Ленина, площадь Ленина',c:'var(--red)',f:7,free:120},
+pur:{n:'В черте города',d:'Новобелицкий, Железнодорожный и Советский районы',c:'var(--pur)',f:12},
+grn:{n:'Пригород',d:'Стоимость по тарифу курьера, уточнит менеджер',c:'var(--grn)',f:null}};
+var SLOTS=[[10,14],[14,18],[18,22]];
+var LV=[['Первый статус',0,2],['Птичка Селект',350,5],['Птичка Золото',1700,10],['Птичка Платина',3500,15]];
+var ME={spent:420,pts:30};
+var S={v:'cat',cart:{},mode:'del',zone:'red',date:'',slot:0,name:'',tel:'',addr:'',pts:false,err:''};
+var $=function(s){return document.querySelector(s)};
+var rub=function(n){return Math.round(n).toLocaleString('ru-RU')+'\u00A0Br'};
+var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+function lvl(){var l=LV[0];LV.forEach(function(x){if(ME.spent>=x[1])l=x});return l}
+function nxt(){return LV.filter(function(x){return x[1]>ME.spent})[0]}
+function sub(){return P.reduce(function(a,p){return a+(S.cart[p.id]||0)*p.p},0)}
+function cnt(){return Object.values(S.cart).reduce(function(a,b){return a+b},0)}
+function art(p,i){
+ var s='',N=p.k==='d'?9:7;
+ for(var k=0;k<N;k++){
+  var x=38+k*(124/(N-1))+((k*37+i*13)%9)-4,y=48+((k*53+i*17)%55),col=p.b[k%2];
+  s+='<path d="M100 250 Q'+((100+x)/2)+' '+((250+y)/2+22)+' '+x+' '+y+'" stroke="#6F7B5F" stroke-width="1.4" fill="none"/>';
+  if(p.k==='t')s+='<ellipse cx="'+x+'" cy="'+y+'" rx="8" ry="13" fill="'+col+'"/>';
+  else if(p.k==='d')s+='<circle cx="'+x+'" cy="'+y+'" r="4" fill="'+col+'"/><circle cx="'+(x+4)+'" cy="'+(y+9)+'" r="3" fill="'+col+'"/>';
+  else{for(var a=0;a<360;a+=60)s+='<ellipse cx="'+(x+8*Math.cos(a*Math.PI/180))+'" cy="'+(y+8*Math.sin(a*Math.PI/180))+'" rx="9" ry="5" transform="rotate('+a+' '+(x+8*Math.cos(a*Math.PI/180))+' '+(y+8*Math.sin(a*Math.PI/180))+')" fill="'+col+'" opacity=".92"/>';s+='<circle cx="'+x+'" cy="'+y+'" r="3" fill="#E2C98E"/>'}
+ }
+ s+='<path d="M58 250 L100 178 L142 250Z" fill="#CBB99B"/><path d="M100 178 L100 250" stroke="#B9A684" stroke-width=".8"/><rect x="88" y="214" width="24" height="14" fill="#F3EEE3" opacity=".9"/>';
+ return '<svg viewBox="0 0 200 250" role="img" aria-label="'+esc(p.n)+'" style="background:'+p.bg+'">'+s+'</svg>';
+}
+function delivery(){
+ if(S.mode==='pick')return 0;
+ var z=ZONES[S.zone];
+ if(z.f===null)return null;
+ return(z.free&&sub()>=z.free)?0:z.f;
+}
+function add(id,d){S.cart[id]=Math.max(0,(S.cart[id]||0)+d);if(!S.cart[id])delete S.cart[id];R();bump()}
+function go(v){menu(0);S.v=v;S.err='';window.scrollTo(0,0);R()}
+function hdr(){var l=lvl(),n=nxt();return '<header><div><div class="logo">птичка</div><div class="sub">цветы, Гомель</div></div><div class="me"><b>'+l[0]+'</b>кешбэк '+l[2]+'%, '+ME.pts+' баллов</div></header>'}
+function cat(){
+ return hdr()+'<div class="note">Доставка ежедневно с 10:00 до 22:00. В центре бесплатно от 120\u00A0Br.</div><div class="grid">'+
+ P.map(function(p,i){return '<div><div class="tile">'+art(p,i)+'<button class="add" aria-label="Добавить '+esc(p.n)+'" onclick="add('+p.id+',1)">+</button></div><div class="nm">'+p.n+'</div><div class="cm">'+p.c+'</div><div class="pr">'+rub(p.p)+(S.cart[p.id]?' <span class="small">в корзине: '+S.cart[p.id]+'</span>':'')+'</div></div>'}).join('')+'</div>'+
+ '';
+}
+function cart(){
+ if(!cnt())return '<div class="pg"><h2>Корзина пуста</h2><p class="small">Добавьте букеты из каталога.</p><button class="btn" onclick="go(\'cat\')">В каталог</button></div>';
+ var rows=P.filter(function(p){return S.cart[p.id]}).map(function(p){return '<div class="ci row"><div><div class="nm" style="margin:0">'+p.n+'</div><div class="small">'+rub(p.p)+'</div></div><div class="qty"><button aria-label="Меньше" onclick="add('+p.id+',-1)">−</button>'+S.cart[p.id]+'<button aria-label="Больше" onclick="add('+p.id+',1)">+</button></div></div>'}).join('');
+ var z=ZONES.red,left=z.free-sub();
+ return '<div class="pg"><button class="back" onclick="go(\'cat\')">Назад в каталог</button><h2>Корзина</h2>'+rows+
+ '<div class="row" style="padding:18px 0"><span>Букеты</span><span class="serif" style="font-size:24px">'+rub(sub())+'</span></div>'+
+ (left>0?'<p class="small">До бесплатной доставки в центре: '+rub(left)+'</p>':'<p class="small">Доставка в центре бесплатная</p>')+
+ '<button class="btn" onclick="go(\'co\')">Оформить заказ</button></div>';
+}
+function minDate(){var d=new Date();if(d.getHours()>=19)d.setDate(d.getDate()+1);return d.toISOString().slice(0,10)}
+function co(){
+ if(!S.date)S.date=minDate();
+ var today=S.date===new Date().toISOString().slice(0,10),h=new Date().getHours();
+ var d=delivery(),sb=sub(),max=Math.min(ME.pts,Math.floor(sb*.5)),use=S.pts?max:0,pay=sb-use+(d||0),cb=Math.round((sb-use)*lvl()[2]/100);
+ var zones=Object.keys(ZONES).map(function(k){var z=ZONES[k],pr=z.f===null?'по тарифу':(z.free&&sb>=z.free?'бесплатно':rub(z.f));
+  return '<label class="opt"><input type="radio" name="z" '+(S.zone===k?'checked':'')+' onchange="S.zone=\''+k+'\';R()"><span style="flex:1"><span class="dot" style="background:'+z.c+'"></span>'+z.n+'<br><span class="small">'+z.d+(z.free?'. Бесплатно от '+rub(z.free):'')+'</span></span><span>'+pr+'</span></label>'}).join('');
+ var slots=SLOTS.map(function(s,i){var off=today&&h>=s[1]-3;return '<button class="chip'+(S.slot===i?' on':'')+'" '+(off?'disabled':'')+' onclick="S.slot='+i+';R()">'+s[0]+'–'+s[1]+'</button>'}).join('');
+ if(today&&h>=SLOTS[S.slot][1]-3){var f=SLOTS.findIndex(function(s){return h<s[1]-3});if(f>=0)S.slot=f}
+ return '<div class="pg"><button class="back" onclick="go(\'cart\')">Назад в корзину</button><h2>Оформление</h2>'+
+ '<div class="seg"><button class="'+(S.mode==='del'?'on':'')+'" onclick="S.mode=\'del\';R()">Доставка</button><button class="'+(S.mode==='pick'?'on':'')+'" onclick="S.mode=\'pick\';R()">Самовывоз</button></div>'+
+ (S.mode==='del'?'<div class="sec"><h3>Зона доставки</h3>'+zones+'<input type="text" placeholder="Улица, дом, квартира" value="'+esc(S.addr)+'" oninput="S.addr=this.value" autocomplete="street-address"></div>':'<div class="sec"><h3>Где забрать</h3><p style="margin:0">Гомель, адрес магазина уточняется</p><p class="small">Бесплатно, готовим к выбранному времени.</p></div>')+
+ '<div class="sec"><h3>'+(S.mode==='del'?'Когда доставить':'Когда забрать')+'</h3><input type="date" min="'+minDate()+'" value="'+S.date+'" onchange="S.date=this.value;R()"><div class="chips">'+slots+'</div></div>'+
+ '<div class="sec"><h3>Получатель</h3><input type="text" placeholder="Имя" value="'+esc(S.name)+'" oninput="S.name=this.value" autocomplete="name"><input type="tel" placeholder="Телефон" value="'+esc(S.tel)+'" oninput="S.tel=this.value" autocomplete="tel"></div>'+
+ '<div class="sec"><h3>Баллы</h3><label class="opt" style="border:0;padding:0"><input type="checkbox" '+(S.pts?'checked':'')+' onchange="S.pts=this.checked;R()"><span>Списать '+rub(max).replace('Br','баллов')+'<br><span class="small">Доступно '+ME.pts+', не больше 50% от суммы букетов</span></span></label></div>'+
+ '<div class="sec sum"><div><span>Букеты</span><span>'+rub(sb)+'</span></div><div><span>Доставка</span><span>'+(d===null?'по тарифу курьера':d?rub(d):'бесплатно')+'</span></div>'+(use?'<div><span>Баллы</span><span>−'+rub(use).replace('Br','')+'</span></div>':'')+
+ '<div class="tot"><span>К оплате</span><span>'+rub(pay)+'</span></div><p class="small">Вернётся баллами: '+cb+' (кешбэк '+lvl()[2]+'%)'+(d===null?'. Доставку рассчитает менеджер.':'')+'</p></div>'+
+ (S.err?'<p class="err">'+S.err+'</p>':'')+'<button class="btn" onclick="pay()">Оплатить '+rub(pay)+'</button><p class="small" style="text-align:center">Демо: онлайн-оплата подключится позже</p></div>';
+}
+function pay(){
+ if(!S.name.trim()||S.tel.replace(/\D/g,'').length<10)S.err='Укажите имя и телефон получателя';
+ else if(S.mode==='del'&&!S.addr.trim())S.err='Укажите адрес доставки';
+ else{S.v='ok';S.no=Math.floor(1000+Math.random()*9000);S.err='';window.scrollTo(0,0)}
+ R();
+}
+function ok(){
+ var sl=SLOTS[S.slot],dt=new Date(S.date).toLocaleDateString('ru-RU',{day:'numeric',month:'long'});
+ return '<div class="pg" style="padding-top:60px"><div class="logo">птичка</div><h2 style="margin-top:28px">Заказ №'+S.no+' принят</h2><p>'+(S.mode==='del'?'Привезём':'Будет готов')+' '+dt+', '+sl[0]+'–'+sl[1]+'.<br>Мы напишем на '+esc(S.tel)+'.</p><div class="sec"><button class="btn ghost" onclick="S.cart={};S.pts=false;S.v=\'cat\';R()">Вернуться в каталог</button></div></div>';
+}
+function dlv(){
+ return '<div class="pg"><h2>Доставка и оплата</h2><p class="small">Гомель, ежедневно с 10:00 до 22:00. Интервалы: '+SLOTS.map(function(s){return s[0]+'–'+s[1]}).join(', ')+'.</p>'+
+ Object.keys(ZONES).map(function(k){var z=ZONES[k];return '<div class="sec row" style="align-items:flex-start"><span><span class="dot" style="background:'+z.c+'"></span>'+z.n+'<br><span class="small">'+z.d+'</span></span><span style="text-align:right">'+(z.f===null?'по тарифу':rub(z.f))+(z.free?'<br><span class="small">от '+rub(z.free)+' бесплатно</span>':'')+'</span></div>'}).join('')+
+ '<div class="sec"><h3>Оплата</h3><p style="margin:0">Онлайн при оформлении. До 50% суммы букетов можно оплатить баллами.</p></div><button class="btn" onclick="go(\'cat\')">В каталог</button></div>';
+}
+function loy(){var l=lvl(),n=nxt(),pr=n?Math.round((ME.spent-l[1])/(n[1]-l[1])*100):100;
+ return '<div class="pg"><h2>Птичка и баллы</h2><p>Баллы начисляются с каждой оплаченной покупки, а статус растёт вместе с суммой покупок.</p><div class="sec"><div class="serif" style="font-size:28px;font-style:italic">'+l[0]+'</div><div class="small">Куплено на '+rub(ME.spent)+(n?', до статуса «'+n[0]+'» ещё '+rub(n[1]-ME.spent):'')+'</div><div class="prog"><i style="width:'+pr+'%"></i></div></div>'+
+ LV.map(function(x,j){var r=j===0?'до '+rub(LV[1][1]):j<3?rub(x[1])+' – '+rub(LV[j+1][1]):'от '+rub(x[1]);return '<div class="row" style="padding:12px 0;border-top:1px solid var(--line);'+(x===l?'':'color:var(--mute)')+'"><span>'+x[0]+'<br><span class="small">'+r+'</span></span><span class="serif" style="font-size:24px">'+x[2]+'%</span></div>'}).join('')+
+ '<p class="small" style="margin-top:16px">Баллами можно оплатить до 50% суммы букетов.</p></div>';}
+function buildMenu(){$('#menu').innerHTML='<div class="logo" style="margin-bottom:24px">птичка</div>'+[['Каталог','cat'],['Корзина','cart'],['Доставка и оплата','dlv'],['Птичка и баллы','loy']].map(function(m){return '<button class="mi" onclick="go(\''+m[1]+'\')">'+m[0]+'</button>'}).join('')+'<div class="small" style="margin-top:auto">Ежедневно с 10:00 до 22:00<br>Гомель</div>'}
+function menu(o){$('#menu').classList.toggle('open',!!o);$('#ov').classList.toggle('open',!!o)}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')menu(0)});
+function bump(){var b=$('.badge');if(b){b.classList.remove('bp');void b.offsetWidth;b.classList.add('bp')}}
+function topbar(){var t=$('#top');t.style.display=S.v==='ok'?'none':'flex';
+ t.innerHTML='<button class="ic" aria-label="Меню" onclick="menu(1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 8h16M4 16h10"/></svg></button><button class="ic" aria-label="Корзина" onclick="go(\'cart\')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>'+(cnt()?'<span class="badge">'+cnt()+'</span>':'')+'</button>'}
+var last='';
+function R(){var v=S.v,el=$('#view');
+ el.innerHTML={cat:cat,cart:cart,co:co,ok:ok,dlv:dlv,loy:loy}[v]();
+ if(v!==last){el.classList.remove('enter');void el.offsetWidth;el.classList.add('enter');last=v;clearTimeout(R.t);R.t=setTimeout(function(){el.classList.remove('enter')},1100)}
+ topbar();var b=$('#bar');b.classList.toggle('show',!!cnt()&&v==='cat');if(cnt())b.innerHTML='<span>Корзина, '+cnt()+'</span><span>'+rub(sub())+'</span>'}
+buildMenu();
+R();
+</script>
+</body>
+</html>
